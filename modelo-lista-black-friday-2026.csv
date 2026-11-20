@@ -1,0 +1,6 @@
+Produto (modelo exato);Prioridade (1-3);Loja 1;Preço loja 1 (R$);Loja 2;Preço loja 2 (R$);Loja 3;Preço loja 3 (R$);Frete (R$);Menor preço antes (R$);Preço na Black Friday (R$);Desconto real (%);Comprado?
+Exemplo: Fone XYZ modelo 2025;1;Loja A;199,90;Loja B;189,90;Loja C;209,00;0,00;189,90;;;Não
+Exemplo: Garrafa térmica 500 ml;2;Loja A;59,90;Loja B;62,00;Loja C;55,00;12,00;55,00;;;Não
+Exemplo: Presente amigo secreto;3;Loja A;29,90;Loja B;27,50;Loja C;31,00;0,00;27,50;;;Não
+;;;;;;;;;;;;
+Desconto real = 1 - (preço na Black Friday / menor preço antes). Modelo grátis de https://gutodc.github.io/ — versão completa com contas automáticas: https://gutodc.github.io/planilha/;;;;;;;;;;;;
