@@ -5,12 +5,22 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+concurrency:
+  group: decode-images
+  cancel-in-progress: false
 jobs:
   decode:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - run: |
-          for f in *.b64; do base64 -d "$f" > "${f%.b64}.jpg"; done
           git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
-          git add *.jpg; git diff --cached --quiet || git commit -m "Decode images" && git push
+          git pull --rebase origin main
+          for f in *.b64; do base64 -d "$f" > "${f%.b64}.jpg"; done
+          git add *.jpg
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Decode images"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 5; done
+          exit 1
